@@ -5,14 +5,14 @@ import "fmt"
 var bigNumber = 1000
 
 func main() {
-	sum := 0
+  sum := 0
 
-	for i := 0; i < bigNumber; i++ {
-		if i%3 == 0 || i%5 == 0 {
-			sum += i
-		}
-	}
+  for i := 0; i < bigNumber; i++ {
+    if i%3 == 0 || i%5 == 0 {
+      sum += i
+    }
+  }
 
-	fmt.Print(sum)
-	fmt.Print("\n")
+  fmt.Print(sum)
+  fmt.Print("\n")
 }
