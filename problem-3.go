@@ -21,34 +21,44 @@ func isPrime(value int) bool {
   return prime
 }
 
-func main() {
-  primeFactors := []int{}
+func filterPrimeFactors(primeFactors []int) bool {
   sum := 1
   stop := false
 
-  for i := 0; i < end; i++ {
-    sum = 1
+  for _, element := range primeFactors {
+    fmt.Println(element)
+    sum *= element
 
+    if sum > end {
+      //TODO: remove last element and do a recursive call to this function
+      primeFactors = primeFactors[:len(primeFactors)-1]
+      stop = filterPrimeFactors(primeFactors)
+    } else if sum == end {
+      stop = true
+      break
+    } else {
+      break
+    }
+  }
+
+  return stop
+}
+
+func main() {
+  primeFactors := []int{}
+  stop := false
+
+  for i := 0; i < end; i++ {
     if isPrime(i) {
       primeFactors = append(primeFactors, i)
     }
 
-    for _, element := range primeFactors {
-      sum *= element
-
-      if sum > end {
-        //TODO: remove last element and do a recursive call to this function
-        //stop = true
-        //fmt.Print("sum: ", sum)
-        //break
-      }
-    }
+    filterPrimeFactors(primeFactors)
 
     if stop {
       break
     }
   }
 
-  fmt.Print(stop, "\n")
-  fmt.Print(primeFactors)
+  fmt.Println(primeFactors)
 }
