@@ -30,13 +30,12 @@ func filterPrimeFactors(primeFactors []int) bool {
     sum *= element
 
     if sum > end {
-      //TODO: remove last element and do a recursive call to this function
       primeFactors = primeFactors[:len(primeFactors)-1]
       stop = filterPrimeFactors(primeFactors)
     } else if sum == end {
       stop = true
       break
-    } else {
+    } else { // it basically always only loops thru the first element and ends here. Make it continue
       break
     }
   }
