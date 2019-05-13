@@ -2,8 +2,6 @@ package main
 
 import "fmt"
 
-var end = 13195
-
 func isPrime(value int) bool {
   prime := true
 
@@ -21,43 +19,20 @@ func isPrime(value int) bool {
   return prime
 }
 
-func filterPrimeFactors(primeFactors []int) bool {
-  sum := 1
-  stop := false
-
-  for _, element := range primeFactors {
-    fmt.Println(element)
-    sum *= element
-
-    if sum > end {
-      primeFactors = primeFactors[:len(primeFactors)-1]
-      stop = filterPrimeFactors(primeFactors)
-    } else if sum == end {
-      stop = true
-      break
-    } else { // it basically always only loops thru the first element and ends here. Make it continue
-      break
-    }
-  }
-
-  return stop
-}
-
 func main() {
   primeFactors := []int{}
-  stop := false
+  end := 600851475143
 
   for i := 0; i < end; i++ {
-    if isPrime(i) {
-      primeFactors = append(primeFactors, i)
+    if !isPrime(i) {
+      continue
     }
 
-    filterPrimeFactors(primeFactors)
-
-    if stop {
-      break
+    if end%i == 0 {
+      primeFactors = append(primeFactors, i)
     }
   }
 
   fmt.Println(primeFactors)
+  fmt.Println("The largest prime factor is: ", primeFactors[len(primeFactors)-1])
 }
